@@ -1,0 +1,196 @@
+/* Select * from InvoiceLine 
+join Invoice on Invoice.InvoiceId = InvoiceLine.InvoiceId
+where UnitPrice > .99; */
+
+/* select i.InvoiceDate, c.FirstName, c.LastName, i.Total 
+from Invoice as i
+join Customer as c on i.CustomerId = c.CustomerId; */
+
+/* select c.FirstName, c.LastName, e.FirstName, e.LastName
+from Customer as c
+join Employee as e on c.SupportRepId = e.EmployeeId; */
+
+/* select al.Title,ar.Name
+from Album al
+join Artist ar on al.ArtistId = ar.ArtistId; */
+
+/* select Pt.TrackId
+from PlaylistTrack as Pt
+join Playlist as Pl on Pl.PlaylistId = Pt.PlaylistId
+where Pl.Name = "Music"; */
+
+/* select t.Name
+/* Select * from InvoiceLine 
+join Invoice on Invoice.InvoiceId = InvoiceLine.InvoiceId
+where UnitPrice > .99; */
+
+/* select i.InvoiceDate, c.FirstName, c.LastName, i.Total 
+from Invoice as i
+join Customer as c on i.CustomerId = c.CustomerId; */
+
+/* select c.FirstName, c.LastName, e.FirstName, e.LastName
+from Customer as c
+join Employee as e on c.SupportRepId = e.EmployeeId; */
+
+/* select al.Title,ar.Name
+from Album al
+join Artist ar on al.ArtistId = ar.ArtistId; */
+
+/* select Pt.TrackId
+from PlaylistTrack as Pt
+join Playlist as Pl on Pl.PlaylistId = Pt.PlaylistId
+where Pl.Name = "Music"; */
+
+/* select t.Name
+from Track as t
+join PlaylistTrack as Pl on Pl.TrackId = t.Trackid
+where Pl.PlaylistId = 5; */
+
+/* select Track.Name, Playlist.Name
+from Track
+join PlaylistTrack on Track.TrackId = PlaylistTrack.TrackId
+join Playlist on PlaylistTrack.PlaylistId = Playlist.PlaylistId; */
+
+/* select t.Name, a.Title
+from Track as t 
+join Album as a on a.AlbumId = t.AlbumId
+join Genre as g on g.GenreId = t.GenreId
+where g.name = "Alternative"; */
+
+/* select * 
+from Invoice 
+where InvoiceId IN (select InvoiceId From InvoiceLine where UnitPrice > .99); */
+
+/* select *
+from PlaylistTrack 
+where PlaylistId = (select PlaylistId from Playlist where Name = "Music"); */
+
+/* select Name
+from Track 
+where TrackId IN (select TrackId from PlaylistTrack where PlaylistId = 5);  */
+
+/* select * from Track
+where GenreId IN (select GenreId from Genre where Name = "Comedy"); */
+
+/* select * from Track
+where AlbumId In (select AlbumId from Album where Title = "Fireball"); */
+
+/* select * from Track
+where AlbumId In (select AlbumId from Album 
+where ArtistId IN (SELECT ArtistId From Artist Where Name = "Queen")); */
+
+/* update Customer set Fax = null where Fax IS NOT null; */
+
+/* update Customer set Company = "Self" where Company IS null; */
+
+/* update Customer set LastName = "Thompson" 
+where FirstName = "Julia" AND LastName = "Barnett"; */
+
+/* update Customer set SupportRepID = 4 where Email = "luisrojas@yahoo.cl"; */
+
+/* update Track
+set Composer = "The darkness around us" 
+where GenreID = (Select GenreID from Genre where Name = "Metal")
+AND Composer IS null; */
+
+/* select count (*), Genre.Name
+from Track
+Join Genre on Track.GenreId = Genre.GenreId
+Group By Genre.Name; */
+
+/* select * from Genre; */
+
+/* select count (*), Genre.Name
+from Track
+join Genre on Track.GenreId = Genre.GenreId 
+where Genre.Name = "Pop" OR Genre.Name = "Rock"
+Group By Genre.Name; */
+
+/* select Artist.Name, Count(*) from Artist
+join Album on Album.ArtistId = Artist.ArtistId
+Group By Album.ArtistId; */
+
+/* select distinct Composer from Track; */
+
+/* select distinct BillingPostalCode from Invoice; */
+
+/* select distinct Company from Customer; */
+
+/* CREATE TABLE practice_delete ( Name string, Type string, Value integer );
+INSERT INTO practice_delete ( Name, Type, Value ) VALUES ("delete", "bronze", 50);
+INSERT INTO practice_delete ( Name, Type, Value ) VALUES ("delete", "bronze", 50);
+INSERT INTO practice_delete ( Name, Type, Value ) VALUES ("delete", "bronze", 50);
+INSERT INTO practice_delete ( Name, Type, Value ) VALUES ("delete", "silver", 100);
+INSERT INTO practice_delete ( Name, Type, Value ) VALUES ("delete", "silver", 100);
+INSERT INTO practice_delete ( Name, Type, Value ) VALUES ("delete", "gold", 150);
+INSERT INTO practice_delete ( Name, Type, Value ) VALUES ("delete", "gold", 150);
+INSERT INTO practice_delete ( Name, Type, Value ) VALUES ("delete", "gold", 150);
+INSERT INTO practice_delete ( Name, Type, Value ) VALUES ("delete", "gold", 150);
+
+SELECT * FROM practice_delete; */
+
+/* delete from practice_delete where Type = 'bronze'; */
+/* delete from practice_delete where Type = 'silver'; */
+/* delete from practice_delete where Value = 150; */
+
+
+
+
+
+
+/* create table Users (
+  UserId integer primary key autoincrement, 
+  Name varchar(300),
+  Email varchar(300)); 
+   */
+   
+/* 
+  create table Products(
+  ProductId integer primary key autoincrement, 
+  Name varchar(300),
+  Price Float(2));   
+   */
+/*  Insert Into Users (Name,Email)
+Values 
+   ("Joe","Joe@email.com"), 
+  ("Smith","Smith@email.com"), 
+  ("John","John@email.com");   */
+  
+/* select * from Products;  */
+
+/* Insert Into Products (Name,Price)
+  Values 
+   ("Bike",40.00), 
+  ("Boat",100.00), 
+  ("Plane",1000.00);  */
+
+/* create table Orders(
+  OrderId integer primary key autoincrement,
+  ProductId integer,
+  FOREIGN KEY (ProductId) REFERENCES Products(ProductId));
+   */
+/* alter table Orders ADD COLUMN UserId integer references Users(UserId);  */
+ 
+/*  insert into Orders(ProductId,UserId)
+ Values (1,2),(3,1),(2,2); */
+ 
+/*  select * from Orders; */
+
+/* select Products.Name from Orders
+join Products ON Products.ProductId = Orders.ProductId
+where OrderID = 1; */
+  
+/* select Products.Name from Orders
+join Products ON Products.ProductId = Orders.ProductId; */
+
+/* select sum(Products.Price) from Orders 
+join Products ON Products.ProductId = Orders.ProductId
+where Orders.ProductId = 1; */
+ 
+/* Select OrderId,count(*)
+from Orders
+join Users On Users.UserId = Orders.UserId 
+Group by Users.UserId; */
+
+
+
